@@ -1,0 +1,169 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+        <h5 class="card-title">{{title}}</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newcat">
+                Yangi bo'lim
+        </button>
+        </div>
+        <table class="table table-bordered">
+    <thead>
+        <tr>
+        <th scope="col">Sarlavha</th>
+        <th scope="col">Tartib raqami</th>
+        <th scope="col">Menyuda chiqishi</th>
+        <th scope="col">Starus(activligi)</th>
+        <th colspan="2" class="text-center">O'zgartirish</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each menu}}
+            <tr>
+                <td>{{title}}</td>
+                <th>{{order}}</th>
+                <td><a href="/menu/menu/{{_id}}">{{{menu}}}</a></td>
+                <td><a href="/menu/status/{{_id}}">{{{status}}}</a></td>
+                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#upcat"
+                onclick="edit('{{_id}}')"
+                >
+                <i class="fa fa-pen"></i>
+        </button></td>
+                <td>
+                    <a href="/menu/delete/{{_id}}" class="btn btn-danger" onclick="return confirm('Qaroringiz qatiymi?')"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="newcat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Yangi bo'lim</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <form action="/menu" method="post">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                        <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="title"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Bo'lim sarlavhasi">
+                                <label for="floatingInput">Bo'lim sarlavhasi</label>
+                                </div>
+                        <div class="form-floating mb-3">
+                                <input type="number" 
+                                value="0"
+                                name="order"
+                                required="required"
+                                class="form-control" 
+                                id="floatingInput" 
+                                placeholder="Tartib raqami">
+                                <label for="floatingInput">Tartib raqami</label>
+                                </div>
+                        <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="menu"
+                                        value="1"
+                                        id="flexSwitchCheckChecked" checked="">
+                                    
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Bosh sahifaga chiqish</label>
+                                    </div> 
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="status"
+                                        value="1"
+                                        id="faol" checked="">
+                                    
+                                        <label class="form-check-label" for="faol">Faolmi?</label>
+                                    </div>                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+            <button type="submit" class="btn btn-primary">Qo'shish</button>
+            </div>
+                    </form> 
+        </div>
+        </div>
+    </div>
+{{!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+    <div class="modal fade" id="upcat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bo'lim tahrirlash</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <form action="/menu/save" method="post" name="editform">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <input type="hidden" name="_id">
+                        <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="title"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Bo'lim sarlavhasi">
+                                <label for="floatingInput">Bo'lim sarlavhasi</label>
+                                </div>
+                        <div class="form-floating mb-3">
+                                <input type="number" 
+                                value="0"
+                                name="order"
+                                required="required"
+                                class="form-control" 
+                                id="floatingInput" 
+                                placeholder="Tartib raqami">
+                                <label for="floatingInput">Tartib raqami</label>
+                                </div>
+                        <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="menu"
+                                        value="1"
+                                        id="flexSwitchCheckChecked" checked="">
+                                    
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Bosh sahifaga chiqish</label>
+                                    </div> 
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="status"
+                                        value="1"
+                                        id="faol" checked="">
+                                    
+                                        <label class="form-check-label" for="faol">Faolmi?</label>
+                                    </div>                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+            <button type="submit" class="btn btn-primary">Yangilash</button>
+            </div>
+                    </form> 
+        </div>
+        </div>
+    </div>
+
+
+    <script>
+        let form = document.forms.editform
+        function edit(id){
+            fetch(`/menu/get/${id}`)
+            .then(res => res.json())
+            .then(menu =>{
+                form.title.value = menu.title
+                form._id.value = menu._id
+                form.order.value = menu.order
+                form.menu.checked = menu.menu == 1 ? true : false
+                form.status.checked = menu.status == 1 ? true : false
+            })
+        }
+    </script>  

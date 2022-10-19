@@ -1,0 +1,42 @@
+<div class="page-sidebar">
+  <ul class="list-unstyled accordion-menu">
+    <li class="sidebar-title">
+      Bosh qism
+    </li>
+    <li {{#if isHome}}
+      class="active-page"
+    {{/if}}>
+      <a href="/dashboard"><i data-feather="home"></i>Bosh sahifa</a>
+    </li>
+    <li {{#if isMenu}}
+      class="active-page"
+    {{/if}}>
+      <a href="/menu"><i data-feather="grid"></i>Menyu</a>
+    </li>
+    <li  {{#if isNews}}
+      class="active-page"
+    {{/if}}>
+      <a href="/news"><i data-feather="list"></i>Yangiliklar</a>
+    </li>
+    <li  {{#if isService}}
+      class="active-page"
+    {{/if}}>
+      <a href="/product"><i data-feather="calendar"></i>Maxsulotlar</a>
+    </li>
+    <li {{#if isService}}
+      class="active-page"
+    {{/if}}>
+      <a href="/servicer"><i data-feather="briefcase"></i>Loyihalar</a>
+    </li>
+    <li  {{#if isFaq}}
+      class="active-page"
+    {{/if}}>
+      <a href="/faq"><i data-feather="message-circle"></i>Savol Javoblar</a>
+    </li>
+    <li  {{#if isSettings}}
+      class="active-page"
+    {{/if}}>
+      <a href="/settings"><i data-feather="settings"></i>Sozlamalar</a>
+    </li>
+  </ul>
+</div>

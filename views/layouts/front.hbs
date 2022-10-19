@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="front/images/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="front/css/bootstrap.min.css">
+    <!-- Settings CSS -->
+    <link rel="stylesheet" href="front/revslider/css/settings.css">
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="front/css/typography.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="front/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="front/css/responsive.css">
+  </head>
+<body>
+      <div id="loading">
+      <div id="loading-center">
+        <img src="front/images/loader.gif" alt="loder">
+      </div>
+    </div>
+        {{>front_header}}
+        {{{body}}}
+        {{>front_footer}}
+
+    <!-- all js here -->
+    <script src="front/js/jquery-min.js" ></script>
+    <!-- popper  -->
+    <script src="front/js/popper.min.js"></script>
+    <!--  bootstrap -->
+    <script src="front/js/bootstrap.min.js" ></script>
+    <!-- Modernizr JavaScript -->
+    <script src="front/js/modernizr.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="front/js/appear.min.js"></script>
+    <!-- Megamenu  -->
+    <script src="front/js/mega_menu.min.js"></script>
+    <!-- Timeline JavaScript -->
+    <script src="front/js/timeline.js"></script>
+    <!-- Wow -->
+    <script src="front/js/wow.min.js"></script>
+    <!-- scrollme -->
+    <script src="front/js/jquery.scrollme.min.js"></script>
+    <!-- countdown JavaScript -->
+    <script src="front/js/countdown.js"></script>
+    <!-- waypoints JavaScript -->
+    <script src="front/js/waypoints.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="front/js/jquery.counterup.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="front/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="front/js/jquery.magnific-popup.min.js"></script>
+    <!-- Isotope JavaScript -->
+    <script src="front/js/isotope.pkgd.min.js"></script>
+    <!-- Progressbar JavaScript -->
+    <script src="front/js/circle-progress.min.js"></script>
+    <!-- Canvas JavaScript -->
+    <script src="front/js/canvasjs.min.js"></script>
+    <!-- REVOLUTION JS FILES -->
+    <script src="front/revslider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="front/revslider/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="front/revslider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="front/revslider/js/extensions/revolution.extension.video.min.js"></script>
+    <!-- Retina JavaScript -->
+    <script src="front/js/retina.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="front/js/custom.js"></script>
+    <script>
+    var tpj=jQuery;
+
+    var revapi3;
+    tpj(document).ready(function() {
+    if(tpj("#rev_slider_3_1").revolution == undefined){
+    revslider_showDoubleJqueryError("#rev_slider_3_1");
+    }else{
+    revapi3 = tpj("#rev_slider_3_1").show().revolution({
+    sliderType:"standard",
+    jsFileLocation:"//localhost/front/revslider-standalone/front/revslider-standalone/front/revslider/public/front/revslider/assets/js/",
+    sliderLayout:"fullwidth",
+    dottedOverlay:"none",
+    delay:9000,
+    navigation: {
+    onHoverStop:"off",
+    },
+    visibilityLevels:[1240,1024,778,480],
+    gridwidth:1366,
+    gridheight:790,
+    lazyType:"none",
+    parallax: {
+    type:"mouse",
+    origo:"enterpoint",
+    speed:400,
+    levels:[5,10,15,20,25,30,35,40,45,46,47,48,49,50,51,55],
+    type:"mouse",
+    disable_onmobile:"on"
+    },
+    shadow:0,
+    spinner:"spinner0",
+    stopLoop:"off",
+    stopAfterLoops:-1,
+    stopAtSlide:-1,
+    shuffle:"off",
+    autoHeight:"off",
+    disableProgressBar:"on",
+    hideThumbsOnMobile:"off",
+    hideSliderAtLimit:0,
+    hideCaptionAtLimit:0,
+    hideAllCaptionAtLilmit:0,
+    debugMode:false,
+    fallbacks: {
+    simplifyAll:"off",
+    nextSlideOnWindowFocus:"off",
+    disableFocusListener:false,
+    }
+    });
+    }
+    }); /*ready*/
+    </script>
+</body>
+</html>

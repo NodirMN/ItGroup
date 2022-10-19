@@ -1,0 +1,300 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+        <h5 class="card-title">{{title}}</h5>
+                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#newcat">
+                Yangi maxsulot
+        </button>
+        </div>
+        <table class="table table-bordered">
+    <thead>
+        <tr>
+        <th scope="col">Rasmi</th>
+        <th scope="col">Sarlavha</th>
+        <th scope="col">Bo'lim</th>
+        <th scope="col">Narxi</th>
+        <th scope="col">Top</th>
+        <th scope="col">Status(activligi)</th>
+        <th colspan="2" class="text-center">O'zgartirish</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each products}}
+            <tr>
+                <th><img src="/{{img}}" width="50"></th>
+                <th>{{title}}</th>
+                <th>{{category.title}}</th>
+                <th>{{price}} so'm</th>
+                <th>{{hot}}</th>
+                <td>{{{status}}}</td>
+                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#upcat"
+                onclick="edit('{{_id}}')"
+                >
+                <i class="fa fa-pen"></i>
+        </button></td>
+                <td>
+                    <a href="/product/delete/{{_id}}" class="btn btn-danger" onclick="return confirm('Qaroringiz qatiymi?')"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="newcat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title "  id="exampleModalLabel">Yangi maxsulot</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                    <form action="/product?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <div class="row">
+
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="title"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Maxsulot sarlavhasi">
+                                <label for="floatingInput">Maxsulot sarlavhasi</label>
+                                </div>
+
+                    </div>
+                    <div class="col-6">
+                                    <select class="form-select " name="category">
+                                        <option selected="" disabled>Mahsulot bo`limi</option>
+                                        {{#each category}}
+                                        <option value="{{_id}}">{{title}}</option>
+                                        {{/each}}
+                                        <label for="floatingSelect">Mahsulot bo`limi</label>
+                                        </select>
+                    </div>
+                    <div class="col-6">
+                                <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="author"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Muallifi">
+                                <label for="floatingInput">Muallifi</label>
+                                </div>
+                    </div>
+                    <div class="col-6">
+
+                                <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="price"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Narxi">
+                                <label for="floatingInput">Narxi</label>
+                                </div>
+                    </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                                        <label class="">Qisqacha tasnifi:</label>
+                                        <textarea class="form-control" style="display:none ;" name="desc" aria-label="With textarea"></textarea>
+                                        <label class="">To'liq tasnifi:</label>
+                                        <textarea class="form-control" name="text" aria-label="With textarea"></textarea>
+                            
+                    </div>
+                                <label for="">Mahsulot rasmi</label>
+                    <div class="mb-3">
+                            <input class="form-control" name="photo1" type="file" id="photo1" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo2" type="file" id="photo2" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo3" type="file" id="photo3" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo4" type="file" id="photo4" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo5" type="file" id="photo5" multiple="">
+                    </div>
+                    
+                                    <div class="col-6 mb-3">
+                                    <select class="form-select " name="status">
+                                        <option disabled>Mahsulot holati</option>
+                                        <option value="1">Mahsulot mavjud</option>
+                                        <option value="2">Mahsulot buyurtma asosida</option>
+                                        <option value="3">Mahsulot mavjud emas</option>
+                                        <option value="4">Mahsulot faol emas</option>
+                                        </select>
+                    </div>      
+                        <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="hot"
+                                        value="1"
+                                        id="flexSwitchCheckChecked" checked="">
+                                    
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">To'p mahsulot</label>
+                                    </div> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+            <button type="submit" class="btn btn-primary">Qo'shish</button>
+            </div>
+                    </form> 
+        </div>
+        </div>
+    </div>
+{{!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+
+    <div class="modal fade" id="upcat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bo'lim tahrirlash</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <form action="/product/save?_csrf={{csrf}}" name="editform" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <input type="hidden" name="_id">
+                    <div class="row">
+
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="title"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Maxsulot sarlavhasi">
+                                <label for="floatingInput">Maxsulot sarlavhasi</label>
+                                </div>
+
+                    </div>
+                    <div class="col-6">
+                                    <select class="form-select " name="category">
+                                        <option selected="" disabled>Mahsulot bo`limi</option>
+                                        {{#each category}}
+                                        <option value="{{_id}}">{{title}}</option>
+                                        {{/each}}
+                                        <label for="floatingSelect">Mahsulot bo`limi</label>
+                                        </select>
+                    </div>
+                    <div class="col-6">
+                                <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="author"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Muallifi">
+                                <label for="floatingInput">Muallifi</label>
+                                </div>
+                    </div>
+                    <div class="col-6">
+
+                                <div class="form-floating mb-3">
+                                <input type="text" 
+                                class="form-control" 
+                                name="price"
+                                id="floatingInput" 
+                                required="required"
+                                placeholder="Narxi">
+                                <label for="floatingInput">Narxi</label>
+                                </div>
+                    </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                                        <label class="">Qisqacha tasnifi:</label>
+                                        <textarea class="form-control" style="display:none ;" name="desc1" aria-label="With textarea"></textarea>
+                                        <label class="">To'liq tasnifi:</label>
+                                        <textarea class="form-control" name="text1" aria-label="With textarea"></textarea>
+                            
+                    </div>
+                                <label for="">Mahsulot rasmi</label>
+                    <div class="mb-3">
+                            <input class="form-control" name="photo1" type="file" id="photo1" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo2" type="file" id="photo2" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo3" type="file" id="photo3" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo4" type="file" id="photo4" multiple="">
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control" name="photo5" type="file" id="photo5" multiple="">
+                    </div>
+                    
+                    <div id="block">
+                            <img  src="/{{img}}" alt="">
+                        </div>
+                                    <div class="col-6 mb-3">
+                                    <select class="form-select " name="status">
+                                        <option disabled>Mahsulot holati</option>
+                                        <option value="0">Mahsulot mavjud</option>
+                                        <option value="1">Mahsulot buyurtma asosida</option>
+                                        <option value="2">Mahsulot mavjud emas</option>
+                                        <option value="3">Mahsulot faol emas</option>
+                                        </select>
+                    </div>      
+                        <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" 
+                                        name="hot"
+                                        value="1"
+                                        id="flexSwitchCheckChecked" checked="">
+                                    
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">To'p mahsulot</label>
+                                    </div> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+            <button type="submit" class="btn btn-primary">Qo'shish</button>
+            </div>
+                    </form> 
+        </div>
+        </div>
+    </div>
+
+        <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'desc' );
+        CKEDITOR.replace( 'text' );
+       
+        let form = document.forms.editform
+
+        function edit(id){
+            fetch(`/product/get/${id}`)
+            .then(res => res.json())
+            .then(product =>{
+                    var div = document.createElement('div');
+                    div.innerHTML = photos;
+                    document.getElementById('block').appendChild(div);
+                    
+                    
+                form.title.value = product.title
+                form._id.value = product._id
+                form.price.value = product.price
+                form.author.value = product.author
+                form.category.value = product.category
+                form.desc1.value = product.desc
+                form.text1.value = product.text
+                form.status.value = product.status
+
+
+                form.hot.checked = product.hot == 1 ? true : false
+                CKEDITOR.replace( 'desc1' );
+                CKEDITOR.replace( 'text1' );
+            })
+        }
+    </script>  
